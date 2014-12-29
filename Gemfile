@@ -18,6 +18,26 @@ gem 'pundit'
 gem 'simple_form'
 gem 'unicorn'
 gem 'unicorn-rails'
+
+# added gems
+gem 'font-awesome-rails'
+gem 'simple_token_authentication'
+gem 'attribute_normalizer'
+
+gem 'gibbon' #mailchimp list
+
+gem "paperclip"
+gem 'aws-sdk'
+
+gem 'acts-as-taggable-on'
+gem 'will_paginate'
+
+gem 'pushmeup' #push notifications
+gem 'twilio-ruby' #sms
+
+# memory logging
+gem 'oink'
+
 group :development do
   gem 'better_errors'
   gem 'binding_of_caller', :platforms=>[:mri_21]
@@ -43,6 +63,7 @@ group :development, :test do
 end
 group :production do
   gem 'rails_12factor'
+  gem 'newrelic_rpm' #added
 end
 group :test do
   gem 'capybara'
