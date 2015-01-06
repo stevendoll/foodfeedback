@@ -1,6 +1,6 @@
 <%# add navigation links to this file %>
 
-<% if current_user %>
+<% if current_user && 1 == 2 %>
 <li class="active">
     <a href="meetings"><i class="fa fa-files-o"></i> <span class="nav-label">Today </span><span class="label label-warning pull-right"><%= current_user.meetings.count if current_user %></span></a>
     <ul class="nav nav-second-level">
