@@ -35,6 +35,9 @@ class User < ActiveRecord::Base
 
 
   #has_many :meetings,  :foreign_key => 'creator_id'
+  # belongs to account
+  # has many messages
+  # has many patients?
 
   # http://rails-bestpractices.com/posts/4-add-model-virtual-attribute
   def full_name
