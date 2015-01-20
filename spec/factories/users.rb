@@ -9,5 +9,14 @@ FactoryGirl.define do
       role 'admin'
     end
 
+    trait :client do
+      role 'client'
+    end
+
+    trait :practitioner do
+      role 'practitioner'
+    end
+
+
   end
 end

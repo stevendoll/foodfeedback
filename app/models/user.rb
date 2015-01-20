@@ -1,6 +1,6 @@
 class User < ActiveRecord::Base
   acts_as_taggable_on :skills
-  enum role: [:user, :vip, :admin]
+  enum role: [:client, :practitioner, :admin]
   after_initialize :set_default_role, :if => :new_record?
 
   # token authentication https://github.com/gonzalo-bulnes/simple_token_authentication
@@ -59,7 +59,7 @@ class User < ActiveRecord::Base
   end
 
   def set_default_role
-    self.role ||= :user
+    self.role ||= :client
   end
 
   # Override Devise::Confirmable#after_confirmation
