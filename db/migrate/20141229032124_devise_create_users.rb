@@ -19,6 +19,11 @@ class DeviseCreateUsers < ActiveRecord::Migration
       t.string :phone
       t.string :description
 
+      # temp fields for fatsecret account
+      t.string :fatsecret_token
+      t.string :fatsecret_secret
+
+
       t.integer :role
 
       ## avatar attachment with paperclip and aws
