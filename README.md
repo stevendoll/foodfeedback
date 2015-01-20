@@ -9,7 +9,7 @@ Technology Stack
 - Postgres Database
 - Heroku hosting
 - AWS S3 CDN for assets
-- High quality bootstrap theme from WrapBoodstrap ([https://wrapbootstrap.com/theme/inspinia-responsive-admin-theme-WB0R5L90S] Inspinia) 
+- High quality bootstrap theme from WrapBootstrap ([https://wrapbootstrap.com/theme/inspinia-responsive-admin-theme-WB0R5L90S] Inspinia) 
 - Twilio SMS support
 - Pushmeup APNS push notifications
 - Uuids used throughout
