@@ -3,16 +3,16 @@ class ApiTokensController < ApplicationController
   # POST /api_tokens
   def create
     @user = current_user
-    @user.
+    @user.fatsecret_token = request.env['omniauth.auth']['credentials'].token
+    @user.fatsecret_secret = request.env['omniauth.auth']['credentials'].secret
 
-    respond_to do |format|
-      if @device.save
-        format.html { redirect_to @device, notice: 'Device was successfully created.' }
-        format.json { render :show, status: :created, location: @device }
-      else
-        format.html { render :new }
-        format.json { render json: @device.errors, status: :unprocessable_entity }
-      end
+    logger.info request.env['omniauth.auth']['credentials']
+    puts request.env['omniauth.auth']['credentials']
+
+    if @user.save
+      redirect_to @user, notice: 'User updated.'
+    else
+      render :new
     end
   end
 end

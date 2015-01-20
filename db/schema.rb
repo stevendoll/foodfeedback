@@ -26,6 +26,8 @@ ActiveRecord::Schema.define(version: 20141229032124) do
     t.string   "last_name"
     t.string   "phone"
     t.string   "description"
+    t.string   "fatsecret_token"
+    t.string   "fatsecret_secret"
     t.integer  "role"
     t.string   "avatar_file_name"
     t.string   "avatar_content_type"

@@ -1,3 +1,8 @@
 <h3>User</h3>
 <p>Name: <%= @user.name if @user.name %></p>
 <p>Email: <%= @user.email if @user.email %></p>
+<p>Fatsecret token: <%= @user.fatsecret_token if @user.fatsecret_token %></p>
+<p>Fatsecret secret: <%= @user.fatsecret_secret if @user.fatsecret_secret %></p>
+
+<h2>Fatsecret data</h2>
+<%= @body %>
