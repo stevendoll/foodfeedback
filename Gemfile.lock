@@ -95,6 +95,9 @@ GEM
       railties (>= 3.0.0)
     faker (1.4.3)
       i18n (~> 0.5)
+    fatsecret-omniauth (0.0.2)
+      multi_json
+      omniauth-oauth (~> 1.0)
     ffi (1.9.6)
     font-awesome-rails (4.2.0.0)
       railties (>= 3.2, < 5.0)
@@ -125,6 +128,7 @@ GEM
       guard (~> 2.1)
       guard-compat (~> 1.1)
       rspec (>= 2.99.0, < 4.0)
+    hashie (3.3.2)
     high_voltage (2.2.1)
     hike (1.2.3)
     hitimes (1.2.2)
@@ -166,9 +170,16 @@ GEM
     notiffany (0.0.2)
       nenv (~> 0.1)
       shellany (~> 0.0)
+    oauth (0.4.7)
     oink (0.10.1)
       activerecord
       hodel_3000_compliant_logger
+    omniauth (1.2.2)
+      hashie (>= 1.2, < 4)
+      rack (~> 1.0)
+    omniauth-oauth (1.0.1)
+      oauth
+      omniauth (~> 1.0)
     orm_adapter (0.5.0)
     paperclip (4.2.1)
       activemodel (>= 3.0.0)
@@ -342,6 +353,7 @@ DEPENDENCIES
   devise_invitable
   factory_girl_rails
   faker
+  fatsecret-omniauth
   font-awesome-rails
   foreman
   gibbon

@@ -19,6 +19,14 @@ gem 'simple_form'
 gem 'unicorn'
 gem 'unicorn-rails'
 
+# oauth
+# gem 'omniauth'
+# gem 'omniauth-twitter'
+# gem 'omniauth-facebook'
+# gem 'omniauth-linkedin'
+
+gem 'fatsecret-omniauth'
+
 # added gems
 gem 'font-awesome-rails'
 gem 'simple_token_authentication'
