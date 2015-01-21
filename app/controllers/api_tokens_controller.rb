@@ -6,8 +6,8 @@ class ApiTokensController < ApplicationController
     @user.fatsecret_token = request.env['omniauth.auth']['credentials'].token
     @user.fatsecret_secret = request.env['omniauth.auth']['credentials'].secret
 
-    logger.info request.env['omniauth.auth']['credentials']
-    puts request.env['omniauth.auth']['credentials']
+    # logger.info request.env['omniauth.auth']['credentials']
+    # puts request.env['omniauth.auth']['credentials']
 
     if @user.save
       redirect_to @user, notice: 'User updated.'

@@ -10,7 +10,7 @@
   <ul class="unstyled">
 <li>Unlimited Clients</li>￼</ul>
 <h3>$75/month</h3>
-<%= link_to 'Practitioner', new_user_registration_path(:plan => 'practitioner'), :class => 'btn btn-primary' %>
+<%= link_to 'Practitioner', new_practice_user_registration_path, :class => 'btn btn-primary' %>
 </div>
 <div class="span2 well featured">
 <div class="plan featured-plan"><h2>Gold</h2></div>
@@ -18,4 +18,4 @@
   <li>Client</li>
 </ul>
 <h3>Free</h3>
-<%= link_to 'Client', new_user_registration_path(:plan => 'client'), :class => 'btn btn-primary' %> </div>
+<%= link_to 'Client', new_user_registration_path, :class => 'btn btn-primary' %> </div>

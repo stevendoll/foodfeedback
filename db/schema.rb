@@ -25,7 +25,9 @@ ActiveRecord::Schema.define(version: 20141229032124) do
     t.string   "first_name"
     t.string   "last_name"
     t.string   "phone"
+    t.string   "title"
     t.string   "description"
+    t.string   "invitation_code"
     t.string   "fatsecret_token"
     t.string   "fatsecret_secret"
     t.integer  "role"
@@ -54,6 +56,7 @@ ActiveRecord::Schema.define(version: 20141229032124) do
     t.datetime "invitation_accepted_at"
     t.integer  "invitation_limit"
     t.uuid     "invited_by_id"
+    t.string   "invited_by_type"
     t.integer  "invitations_count",      default: 0
     t.datetime "created_at"
     t.datetime "updated_at"

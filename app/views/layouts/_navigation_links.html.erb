@@ -1,29 +1,11 @@
 <%# add navigation links to this file %>
 
-<% if current_user && 1 == 2 %>
+<% if current_user %>
 <li class="active">
-    <a href="meetings"><i class="fa fa-files-o"></i> <span class="nav-label">Today </span><span class="label label-warning pull-right"><%= current_user.meetings.count if current_user %></span></a>
+    <a href="users"><i class="fa fa-files-o"></i> <span class="nav-label">Clients </span><span class="label label-warning pull-right"><%= User.count if current_user %></span></a>
     <ul class="nav nav-second-level">
-        <% current_user.meetings.each do |meeting| %>
-        <li><%= link_to meeting.name, meeting %></li>
-        <li><a href="form_basic.html">Action items</a></li>
-        <li><a href="form_advanced.html">Notes</a></li>
-        <% end %>
-    </ul>
-</li>
-<li>
-    <a href="meetings"><i class="fa fa-files-o"></i> <span class="nav-label">Planned Meetings </span><span class="label label-primary pull-right"><%= current_user.meetings.count if current_user %></span></a>
-    <ul class="nav nav-second-level">
-        <% current_user.meetings.each do |meeting| %>
-        <li><%= link_to meeting.name, meeting %></li>
-        <% end %>
-    </ul>
-</li>
-<li>
-    <a href="meetings"><i class="fa fa-files-o"></i> <span class="nav-label">Recent Meetings </span><span class="label label-info pull-right"><%= current_user.meetings.count if current_user %></span></a>
-    <ul class="nav nav-second-level">
-        <% current_user.meetings.each do |meeting| %>
-        <li><%= link_to meeting.name, meeting %></li>
+        <% User.all.each do |user| %>
+        <li><%= link_to user.email, user %></li>
         <% end %>
     </ul>
 </li>

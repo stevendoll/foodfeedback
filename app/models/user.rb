@@ -64,7 +64,7 @@ class User < ActiveRecord::Base
 
   # Override Devise::Confirmable#after_confirmation
   def after_confirmation
-    add_user_to_mailchimp
+    #add_user_to_mailchimp
   end
 
   # wildcard string match on name field with 3 chars or more

@@ -7,7 +7,7 @@ class DashboardPolicy
   end
 
   def index?
-    @current_user.admin? or @current_user == @user
+    @current_user.admin? or @user == @current_user
   end
 
 end
