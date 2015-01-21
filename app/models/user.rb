@@ -27,7 +27,7 @@ class User < ActiveRecord::Base
 
   #has_many :devices
 
-  #before_destroy :remove_user_from_mailchimp
+  before_destroy :remove_user_from_mailchimp
 
   # validates_format_of :name, :with => /\A[a-zA-Z0-9_]{2,30}\Z/
   # validates :name, presence: true,
@@ -64,7 +64,7 @@ class User < ActiveRecord::Base
 
   # Override Devise::Confirmable#after_confirmation
   def after_confirmation
-    #add_user_to_mailchimp
+    add_user_to_mailchimp
   end
 
   # wildcard string match on name field with 3 chars or more
