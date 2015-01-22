@@ -20,6 +20,10 @@ FactoryGirl.define do
       role 'practitioner'
     end
 
+    trait :unconfirmed do
+      confirmed_at nil
+    end
+
 
   end
 end

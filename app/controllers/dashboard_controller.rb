@@ -4,7 +4,11 @@ class DashboardController < ApplicationController
 
   def index
     @user = current_user
-    authorize @user
+    authorize :client_dashboard
+
+    if current_user.admin? or current_user.practitioner?
+      flash = "This is the client dashboard. Use this to monitor your own information."
+    end
 
     #params = {"food_id" => "33691", "method" => "food.get"}
     params['method'] = 'food_entries.get_month'

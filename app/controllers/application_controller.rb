@@ -3,11 +3,16 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
 
-  def after_sign_in_path_for(resource)
-    if resource.role == 'client'
+  def after_sign_in_path_for(resource) 
+    case current_user.role
+    when 'client' 
+      dashboard_path
+    when 'practitioner' 
+      practice_dashboard_index_path
+    when 'admin' 
       root_path
     else
-      new_user_invitation_path
+      root_path
     end
   end
 

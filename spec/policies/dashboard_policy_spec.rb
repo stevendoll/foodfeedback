@@ -1,10 +1,10 @@
 require 'spec_helper'
 
-describe DashboardPolicy do
+describe ClientDashboardPolicy do
 
   let(:user) { User.new }
 
-  subject { DashboardPolicy }
+  subject { ClientDashboardPolicy }
 
   permissions ".scope" do
     pending "add some examples to (or delete) #{__FILE__}"

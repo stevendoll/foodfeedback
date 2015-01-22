@@ -1,6 +1,10 @@
 Rails.application.routes.draw do
 
 
+  namespace :practice do
+  get 'dashboard/index'
+  end
+
   get '/auth/fatsecret/callback', to: 'api_tokens#create'
 
 

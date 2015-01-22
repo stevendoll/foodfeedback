@@ -1,9 +1,16 @@
-<h1>Dashboard</h1>
+<h1>My Dashboard</h1>
 
 <p>This is the dashboard.</p>
 
-<% if @user.fatsecret_token.nil? %>
+<ul>
+  <li>Current User <%= current_user.email %></li>
+  <li>Role <%= current_user.role %></li>
+</ul>
+
+<% if @user.fatsecret_token.nil?  %>
+<% if @user == current_user %>
 <%= link_to 'Connect your FatSecret Account', signin_path(:fatsecret), :class => 'btn btn-primary' %>
+<% end %>
 <% else %>
 
 <h3>User</h3>
