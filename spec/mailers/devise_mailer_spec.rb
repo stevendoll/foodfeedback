@@ -2,7 +2,7 @@ require "rails_helper"
 
 RSpec.describe Devise::Mailer, :type => :mailer do
 
-  describe 'post for approval' do
+  describe 'invite new client' do
 
     let(:practitioner) { FactoryGirl.create(:user, :practitioner) } 
     let(:potential_client) { FactoryGirl.create(:user, :client) } 
@@ -13,7 +13,7 @@ RSpec.describe Devise::Mailer, :type => :mailer do
     end
 
     it 'should have correct from: address' do
-      expect(mail.from).to eq [ 'no-reply@example.com' ]
+      expect(mail.from).to eq [ 'no-reply@foodfeedback.herokuapp.com' ]
     end
    
     it 'should have correct to: address' do
