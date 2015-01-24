@@ -1,4 +1,4 @@
-class UserPolicy
+class AccountPolicy
   class Scope
     attr_reader :user, :scope
 
@@ -15,8 +15,9 @@ class UserPolicy
         #scope.all
         scope.where(:account => @user.account)
       else
+        false
         #scope.all
-        scope.where(:id => @user.id)
+        #scope.where(:user => current_user)
       end
     end
   end
@@ -25,7 +26,7 @@ class UserPolicy
 
   def initialize(current_user, model)
     @current_user = current_user
-    @user = model
+    @account = model
   end
 
   def index?
@@ -33,7 +34,7 @@ class UserPolicy
   end
 
   def show?
-    @current_user.admin? or @current_user == @user
+    @current_user.admin?
   end
 
   def edit?
@@ -48,5 +49,4 @@ class UserPolicy
     return false if @current_user == @user
     @current_user.admin?
   end
-
 end

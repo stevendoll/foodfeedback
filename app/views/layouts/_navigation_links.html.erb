@@ -2,9 +2,9 @@
 
 <% if current_user %>
 <li class="active">
-    <a href="users"><i class="fa fa-files-o"></i> <span class="nav-label">Clients </span><span class="label label-warning pull-right"><%= User.count if current_user %></span></a>
+    <a href="users"><i class="fa fa-files-o"></i> <span class="nav-label">Clients </span><span class="label label-warning pull-right"><%= policy_scope(User).count if current_user %></span></a>
     <ul class="nav nav-second-level">
-        <% User.all.each do |user| %>
+        <% policy_scope(User).each do |user| %>
         <li><%= link_to user.email, user %></li>
         <% end %>
     </ul>

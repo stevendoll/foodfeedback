@@ -16,18 +16,25 @@ class DashboardController < ApplicationController
 
     # food_entries.get_month
 
-    response = Fatsecret::Api.new({}).api_call(
-      Rails.application.secrets.fatsecret_consumer_key, 
-      Rails.application.secrets.fatsecret_consumer_secret,
-      params, 
-      @user.fatsecret_token,
-      @user.fatsecret_secret
-    )
+    @body = ""
 
-    @body = JSON.parse(response.body)
-    #body = response.body
 
-    puts @body
+    begin
+      response = Fatsecret::Api.new({}).api_call(
+        Rails.application.secrets.fatsecret_consumer_key, 
+        Rails.application.secrets.fatsecret_consumer_secret,
+        params, 
+        @user.fatsecret_token,
+        @user.fatsecret_secret
+      )
+
+      @body = JSON.parse(response.body)
+      #body = response.body
+
+      puts @body
+    rescue => e
+      logger.warn "Fatsecret failure: #{e}" 
+    end
 
 
     #@something = body.month.day.calories

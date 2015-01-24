@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
 
 
+  resources :accounts
+
   namespace :practice do
   get 'dashboard/index'
   end
@@ -8,11 +10,11 @@ Rails.application.routes.draw do
   get '/auth/fatsecret/callback', to: 'api_tokens#create'
 
 
-  devise_for :users, :path => '', :path_names => { :sign_in => "login", :sign_out => "logout", :sign_up => "register" }, :controllers => { :invitations => 'invitations' }
+  devise_for :users, :path => '', :path_names => { :sign_in => "login", :sign_out => "logout", :sign_up => "register" }, :controllers => { :invitations => 'invitations', :confirmations => 'confirmations' }
   resources :users
 
   namespace :practice do
-    devise_for :users, :path => '', :path_names => { :sign_up => "register" }, :controllers => { :registrations => 'practice/registrations' }, :skip => [:sessions, :passwords, :confirmations, :invitations]
+    devise_for :users, :path => '', :path_names => { :sign_up => "register" }, :controllers => { :registrations => 'practice/registrations', :confirmations => 'confirmations' }, :skip => [:sessions, :passwords, :confirmations, :invitations]
   end
 
 

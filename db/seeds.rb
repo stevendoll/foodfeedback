@@ -7,4 +7,26 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 user = CreateAdminService.new.call
 puts 'CREATED ADMIN USER: ' << user.email
+
+account = CreateAccountService.new.call
+puts 'CREATED ADMIN ACCOUNT: ' << account.name
+
+user.account = account
+user.save
 # Environment variables (ENV['...']) can be set in the file .env file.
+
+# puts 'ACCOUNTS'
+# foodfeedback = Account.create(:name => 'Food Feedback')
+
+# puts 'ADMINISTRATORS'
+# user = User.create(:email => 'steven@kichocheo.com', :first_name => 'Steven', :last_name => 'Doll', :phone => '202-267-9909', :title => '', :account_id => foodfeedback)
+# puts 'user: ' << user.first_name
+# user.password = Rails.application.secrets.admin_password
+# user.password_confirmation = Rails.application.secrets.admin_password
+# user.confirm!
+# user.admin!
+# user.save
+
+# puts 'ADD CREATOR TO ADMINISTRATOR ACCOUNT'
+# foodfeedback.creator = user
+# foodfeedback.save

@@ -6,9 +6,9 @@
 
 
 # account - type, payment, address, website, billing rep, 
-rails generate scaffold Account name:string creator_id:uuid billing_contact_id:uuid address_1:text address_2:text city:string state:string zip:string
+rails generate scaffold Account name:string creator_id:uuid
 
-rails generate scaffold Treatment user_id:uuid practitioner_id:uuid treatment_type_id:uuid description:text actual_end:datetime actual_start:datetime completed:boolean created_on:datetime deleted:boolean description:text duration:float modified_on:datetime
+rails generate scaffold Treatment client_id:uuid practitioner_id:uuid treatment_type_id:uuid description:text actual_end:datetime actual_start:datetime completed:boolean created_on:datetime deleted:boolean description:text duration:float modified_on:datetime
 rails generate scaffold TreatmentType name:string display_order:float
 
 # account members - nutritionist, patient, billing contact

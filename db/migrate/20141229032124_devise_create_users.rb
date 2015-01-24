@@ -21,6 +21,9 @@ class DeviseCreateUsers < ActiveRecord::Migration
       t.string :description
       t.string :invitation_code
 
+      # belongs to account
+      t.uuid :account_id
+
       # temp fields for fatsecret account
       t.string :fatsecret_token
       t.string :fatsecret_secret

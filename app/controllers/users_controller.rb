@@ -5,7 +5,7 @@ class UsersController < ApplicationController
 
   def index
     authorize User
-    @users = User.all
+    @users = policy_scope(User)
   end
 
   def show
@@ -16,19 +16,24 @@ class UsersController < ApplicationController
     params['format'] = 'json'
 
     # food_entries.get_month
+    @body = ""
 
-    response = Fatsecret::Api.new({}).api_call(
-      Rails.application.secrets.fatsecret_consumer_key, 
-      Rails.application.secrets.fatsecret_consumer_secret,
-      params, 
-      @user.fatsecret_token,
-      @user.fatsecret_secret
-    )
+    begin
+      response = Fatsecret::Api.new({}).api_call(
+        Rails.application.secrets.fatsecret_consumer_key, 
+        Rails.application.secrets.fatsecret_consumer_secret,
+        params, 
+        @user.fatsecret_token,
+        @user.fatsecret_secret
+      )
 
-    @body = JSON.parse(response.body)
-    #body = response.body
+      @body = JSON.parse(response.body)
+      #body = response.body
 
-    puts @body
+      puts @body
+    rescue => e
+      logger.warn "Fatsecret failure: #{e}" 
+    end
 
 
     #@something = body.month.day.calories
@@ -65,7 +70,7 @@ class UsersController < ApplicationController
   end
 
   def secure_params
-    params.require(:user).permit(:role, :name, :email, :authentication_token, :password, :password_confirmation, :current_password, :first_name, :last_name, :phone, :description, :avatar, :invitation_code, :tag_list)
+    params.require(:user).permit(:role, :name, :email, :authentication_token, :password, :password_confirmation, :current_password, :first_name, :last_name, :phone, :description, :avatar, :invitation_code, :tag_list, :account_id)
   end
 
 end

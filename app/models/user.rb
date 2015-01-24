@@ -34,8 +34,9 @@ class User < ActiveRecord::Base
   #                  uniqueness: { case_sensitive: false }
 
 
-  #has_many :meetings,  :foreign_key => 'creator_id'
-  # belongs to account
+  belongs_to :account
+  #has_many :accounts #,  :foreign_key => 'creator_id'
+
   # has many messages
   # has many patients?
 

@@ -15,11 +15,11 @@ class InvitationPolicy < Struct.new(:user, :invitation)
   end
 
   def edit?
-    @current_user.admin? or @current_user.practitioner?
+    # invited user needs to reply
   end
 
   def update?
-    @current_user.admin? or @current_user.practitioner?
+    # invited user needs to reply
   end
 
   def destroy?

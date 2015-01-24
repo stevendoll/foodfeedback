@@ -11,11 +11,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141229032124) do
+ActiveRecord::Schema.define(version: 20150123174226) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
   enable_extension "uuid-ossp"
+
+  create_table "accounts", id: :uuid, default: "uuid_generate_v4()", force: true do |t|
+    t.string   "name"
+    t.uuid     "creator_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "users", id: :uuid, default: "uuid_generate_v4()", force: true do |t|
     t.string   "email",                  default: "", null: false
@@ -28,6 +35,7 @@ ActiveRecord::Schema.define(version: 20141229032124) do
     t.string   "title"
     t.string   "description"
     t.string   "invitation_code"
+    t.uuid     "account_id"
     t.string   "fatsecret_token"
     t.string   "fatsecret_secret"
     t.integer  "role"
