@@ -1,6 +1,6 @@
 class InvitationsController < Devise::InvitationsController
-  before_filter :authenticate_user!
-  after_action :verify_authorized
+  before_filter :authenticate_user!, only: [:new, :create]
+  after_action :verify_authorized, only: [:new, :create]
 
   def new
     authorize :invitation
@@ -11,22 +11,6 @@ class InvitationsController < Devise::InvitationsController
     authorize :invitation
     super
   end
-
-  def edit
-    authorize :invitation
-    super
-  end
-
-  def update
-    authorize :invitation
-    super
-  end
-
-  def destroy
-    authorize :invitation
-    super
-  end
-
 
   private
 end

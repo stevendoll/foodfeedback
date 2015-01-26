@@ -11,6 +11,7 @@ Rails.application.routes.draw do
 
 
   devise_for :users, :path => '', :path_names => { :sign_in => "login", :sign_out => "logout", :sign_up => "register" }, :controllers => { :invitations => 'invitations', :confirmations => 'confirmations' }
+  #devise_for :users, :path => '', :path_names => { :sign_in => "login", :sign_out => "logout", :sign_up => "register" }, :controllers => { :confirmations => 'confirmations' }
   resources :users
 
   namespace :practice do

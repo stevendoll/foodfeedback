@@ -28,10 +28,11 @@ RSpec.describe Devise::Mailer, :type => :mailer do
       expect(mail.body.encoded).to have_content(practitioner.first_name)
     end
    
-    # it 'should have confirmation link' do
+    # it 'should have link to accept the invitation' do
     #   # to be updated when confirmation links are implemented
-    #   confirmation_url = 'http://picioapp.com/posts/' + post.id + '/feature'
-    #   expect(mail.body.encoded).to have_link(confirmation_url)
+    #   #confirmation_url = 'http://example.com/posts/' + post.id + '/feature'
+    #   respond_url = accept_invitation_url(potential_client, :invitation_token => potential_client.invitation_token)
+    #   expect(mail.body.encoded).to have_link(respond_url)
     # end
 
 

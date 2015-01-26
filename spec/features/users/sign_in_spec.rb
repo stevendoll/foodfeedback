@@ -13,6 +13,18 @@ feature 'Sign in', :devise do
     expect(page).to have_content I18n.t 'devise.failure.not_found_in_database', authentication_keys: 'email'
   end
 
+  # Scenario: User cannot sign in if not confirmed
+  #   Given I exist as a user
+  #   And I am not signed in
+  #   And I am not confirmed
+  #   When I sign in with valid credentials
+  #   Then I see a not confirmed message
+  scenario 'user cannot sign in if not confirmed' do
+    user = FactoryGirl.create(:user, :unconfirmed)
+    signin(user.email, user.password)
+    expect(page).to have_content I18n.t 'devise.failure.unconfirmed'
+  end
+
   # Scenario: User can sign in with valid credentials
   #   Given I exist as a user
   #   And I am not signed in
