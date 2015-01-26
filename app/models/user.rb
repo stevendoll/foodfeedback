@@ -93,7 +93,7 @@ class User < ActiveRecord::Base
   private
 
   def add_user_to_mailchimp
-    unless Rails.env.test?
+    unless Rails.env.test? or self.email == 'user@example.com'
       begin
         mailchimp = Gibbon::API.new
         result = mailchimp.lists.subscribe({
@@ -112,7 +112,7 @@ class User < ActiveRecord::Base
 
 
   def remove_user_from_mailchimp
-    unless Rails.env.test?
+    unless Rails.env.test? or self.email == 'user@example.com'
       begin
         mailchimp = Gibbon::API.new
         result = mailchimp.lists.unsubscribe({
