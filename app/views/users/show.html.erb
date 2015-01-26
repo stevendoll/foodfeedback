@@ -29,7 +29,7 @@
 <% end %>
 
 <br />
-<%= link_to 'Edit', edit_user_path(@user), :class => 'btn btn-mini' %>
+<%= link_to 'Edit', edit_user_path(@user), :class => 'btn btn-mini' %> | <%= link_to("Delete user", user_path(@user), :data => { :confirm => "Are you sure?" }, :method => :delete, :class => 'btn btn-mini') unless @user == current_user %>
 
 
 </div>

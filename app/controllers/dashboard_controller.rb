@@ -18,7 +18,6 @@ class DashboardController < ApplicationController
 
     @body = ""
 
-
     begin
       response = Fatsecret::Api.new({}).api_call(
         Rails.application.secrets.fatsecret_consumer_key, 

@@ -4,5 +4,6 @@ class Account < ActiveRecord::Base
 
   has_many :users
 
-  validates :name, presence: true #, uniqueness: { case_sensitive: false }
+  #validates :name, presence: true, uniqueness: { case_sensitive: false }, length: { minimum: 2 }
+  validates :name, presence: true, length: { minimum: 2 }
 end

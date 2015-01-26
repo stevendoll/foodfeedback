@@ -23,13 +23,18 @@ describe User do
   end
 
   it "85512752 is invalid with a duplicate email address" do
+    this_account = Account.create(
+      name: 'my account'
+    )
     User.create(
       first_name: 'Joe', last_name: 'Tester',
-      email: 'tester@example.com'
+      email: 'tester@example.com',
+      account: this_account
     )
     user = User.new(
-     first_name: 'Jane', last_name: 'Tester',
-     email: 'tester@example.com'
+      first_name: 'Jane', last_name: 'Tester',
+      email: 'tester@example.com',
+      account: this_account
     )
     user.valid?
     expect(user.errors[:email]).to include("has already been taken")

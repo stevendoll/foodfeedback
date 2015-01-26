@@ -44,9 +44,6 @@ feature '85376400 Invite clients', :devise do
     new_client = FactoryGirl.create(:user, :unconfirmed)
     new_client.invite!
     visit accept_user_invitation_path(new_client, invitation_token: new_client.raw_invitation_token)
-    puts new_client.raw_invitation_token
-
-    #expect(page).to have_content I18n.t 'devise.failure.unconfirmed'
     expect(page).to have_content 'Password'
   end
 
@@ -86,7 +83,6 @@ feature '85376400 Invite clients', :devise do
     new_client = FactoryGirl.create(:user, :unconfirmed)
     new_client.invite!
     visit accept_user_invitation_path(new_client, invitation_token: new_client.raw_invitation_token)
-    puts new_client.raw_invitation_token
 
     fill_in 'Password', :with => 'my_password'
     fill_in 'Password confirmation', :with => 'my_password'

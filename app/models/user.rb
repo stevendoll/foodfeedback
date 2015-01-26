@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-  acts_as_taggable_on :skills
+  #acts_as_taggable_on :skills
   enum role: [:client, :practitioner, :admin]
   after_initialize :set_default_role, :if => :new_record?
 
@@ -35,6 +35,8 @@ class User < ActiveRecord::Base
 
 
   belongs_to :account
+  validates_presence_of  :account
+  accepts_nested_attributes_for :account
   #has_many :accounts #,  :foreign_key => 'creator_id'
 
   # has many messages
@@ -65,7 +67,7 @@ class User < ActiveRecord::Base
 
   # Override Devise::Confirmable#after_confirmation
   def after_confirmation
-    #add_user_to_mailchimp
+    add_user_to_mailchimp
   end
 
   # wildcard string match on name field with 3 chars or more
@@ -91,32 +93,40 @@ class User < ActiveRecord::Base
   private
 
   def add_user_to_mailchimp
-    mailchimp = Gibbon::API.new
-    result = mailchimp.lists.subscribe({
-      :id => ENV['MAILCHIMP_LIST_ID'],
-      :email => {:email => self.email},
-      :double_optin => false,
-      :update_existing => true,
-      :send_welcome => true
-    })
-    Rails.logger.info("Subscribed #{self.email} to MailChimp") if result
-  rescue Gibbon::MailChimpError => e
-    Rails.logger.info("MailChimp subscribe failed for #{self.email}: " + e.message)
+    unless Rails.env.test?
+      begin
+        mailchimp = Gibbon::API.new
+        result = mailchimp.lists.subscribe({
+          :id => ENV['MAILCHIMP_LIST_ID'],
+          :email => {:email => self.email},
+          :double_optin => false,
+          :update_existing => true,
+          :send_welcome => true
+        })
+        Rails.logger.info("Subscribed #{self.email} to MailChimp") if result
+      rescue Gibbon::MailChimpError => e
+        Rails.logger.info("MailChimp subscribe failed for #{self.email}: " + e.message)
+      end
+    end
   end
 
 
   def remove_user_from_mailchimp
-    mailchimp = Gibbon::API.new
-    result = mailchimp.lists.unsubscribe({
-      :id => ENV['MAILCHIMP_LIST_ID'],
-      :email => {:email => self.email},
-      :delete_member => true,
-      :send_goodbye => false,
-      :send_notify => true
-      })
-    Rails.logger.info("Unsubscribed #{self.email} from MailChimp") if result
-  rescue Gibbon::MailChimpError => e
-    Rails.logger.info("MailChimp unsubscribe failed for #{self.email}: " + e.message)
+    unless Rails.env.test?
+      begin
+        mailchimp = Gibbon::API.new
+        result = mailchimp.lists.unsubscribe({
+          :id => ENV['MAILCHIMP_LIST_ID'],
+          :email => {:email => self.email},
+          :delete_member => true,
+          :send_goodbye => false,
+          :send_notify => true
+          })
+        Rails.logger.info("Unsubscribed #{self.email} from MailChimp") if result
+      rescue Gibbon::MailChimpError => e
+        Rails.logger.info("MailChimp unsubscribe failed for #{self.email}: " + e.message)
+      end
+    end
   end
 
 
