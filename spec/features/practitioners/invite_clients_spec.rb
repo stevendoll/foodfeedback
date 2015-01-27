@@ -26,6 +26,19 @@ feature '85376400 Invite clients', :devise do
     expect(potential_client.send(:send_confirmation_notification?))
   end
 
+  scenario 'invitee account is set to practitioner account' do
+    practitioner = FactoryGirl.create(:user, :practitioner)
+    login_as(practitioner, :scope => :user)
+    Capybara.current_session.driver.header 'Referer', root_path
+    visit new_user_invitation_path
+    fill_in 'Email', :with => 'invitee_1@mail.com'
+    click_button 'Send an invitation'
+    potential_client = User.find_by_email('invitee_1@mail.com')
+
+    expect(potential_client.account).not_to be_nil
+    expect(potential_client.account.name).to eq("account_name")
+  end
+
   scenario 'client can not invite clients' do
     client = FactoryGirl.create(:user, :client)
     login_as(client, :scope => :user)
