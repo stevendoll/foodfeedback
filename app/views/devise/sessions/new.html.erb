@@ -1,28 +1,21 @@
-<div class="authform">
-  <%= form_for(resource, :as => resource_name, :url => session_path(resource_name), :html => { :role => 'form'}) do |f| %>
-  <h3>Sign in</h3>
+  <%= form_for(resource, :as => resource_name, :url => session_path(resource_name), class: 'm-t', :html => { :role => 'form'}) do |f| %>
   <%= devise_error_messages! %>
   <div class="form-group">
-    <%- if devise_mapping.registerable? %>
-    <%= link_to 'Sign up', new_registration_path(resource_name), class: 'right' %>
-    <% end -%>
-    <%= f.label :email %>
-    <%= f.email_field :email, :autofocus => true, class: 'form-control' %>
+    <%= f.email_field :email, :autofocus => true, placeholder: 'Email', class: 'form-control' %>
   </div>
   <div class="form-group">
-    <%- if devise_mapping.recoverable? %>
-    <%= link_to "Forgot password?", new_password_path(resource_name), class: 'right' %>
-    <% end -%>
-    <%= f.label :password %>
-    <%= f.password_field :password, class: 'form-control' %>
+    <%= f.password_field :password, placeholder: 'Password', class: 'form-control' %>
   </div>
-  <%= f.submit 'Sign in', :class => 'button right' %>
+  <%= f.submit 'Sign in', :class => 'btn btn-primary block full-width m-b' %>
   <% if devise_mapping.rememberable? -%>
   <div class="checkbox" style="width:150px">
     <label>
       <%= f.check_box :remember_me %> Remember me
     </label>
   </div>
-  <% end -%>
   <% end %>
-</div>
+  <% end %>
+  <small><%= link_to "Forgot password?", new_password_path(resource_name) %></small>
+  <p class="text-muted text-center"><small>Do not have an account?</small></p>
+  <%= link_to 'Sign up as an individual', new_registration_path(resource_name), class: 'btn btn-sm btn-white btn-block' %>
+  <%= link_to 'Create an account for your practice', '/practice/register', class: 'btn btn-sm btn-white btn-block' %>  

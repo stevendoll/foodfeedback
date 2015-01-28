@@ -1,33 +1,29 @@
-<div class="authform">
-  <%= simple_form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :role => 'form'}) do |f| %>
-    <h3>Sign up</h3>
-    <%= devise_error_messages! %>
-    <div class="form-group">
-      <%= f.fields_for :account do |account_form| %>
-        <%= account_form.label 'Account' %>
-        <%= account_form.text_field :name, class: 'form-control', id:"account_name" %>
-      <% end %>
-    </div>
-    <div class="form-group">
-      <%= f.label :first_name %>
-      <%= f.text_field :first_name, :autofocus => true, class: 'form-control' %>
-    </div>
-    <div class="form-group">
-      <%= f.label :last_name %>
-      <%= f.text_field :last_name, class: 'form-control' %>
-    </div>
-    <div class="form-group">
-      <%= f.label :email %>
-      <%= f.email_field :email, class: 'form-control' %>
-    </div>
-    <div class="form-group">
-      <%= f.label :password %>
-      <%= f.password_field :password, class: 'form-control' %>
-    </div>
-    <div class="form-group">
-      <%= f.label :password_confirmation %>
-      <%= f.password_field :password_confirmation, class: 'form-control' %>
-    </div>
-     <%= f.submit 'Sign up', :class => 'button right' %>
+<%= simple_form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :role => 'form'}) do |f| %>
+<%= devise_error_messages! %>
+<div class="form-group">
+  <%= f.fields_for :account do |account_form| %>
+    <%= account_form.text_field :name, :autofocus => true, class: 'form-control', id:"account_name", placeholder: 'Account name', label: false %>
   <% end %>
 </div>
+<div class="form-group">
+  <%= f.text_field :first_name, class: 'form-control', placeholder: 'First Name', label: false %>
+</div>
+<div class="form-group">
+  <%= f.text_field :last_name, class: 'form-control', placeholder: 'Last Name', label: false %>
+</div>
+<div class="form-group">
+  <%= f.email_field :email, class: 'form-control', placeholder: 'Email', label: false %>
+</div>
+<div class="form-group">
+  <%= f.password_field :password, class: 'form-control', placeholder: 'Password', label: false %>
+</div>
+<div class="form-group">
+  <%= f.password_field :password_confirmation, class: 'form-control', placeholder: 'Confirmation', label: false %>
+</div>
+<p>Our <a href="">terms and policy</a></p>
+<%= f.submit 'Agree and Sign up', :class => 'btn btn-primary block full-width m-b' %>
+<% end %>
+<p class="text-muted text-center"><small>Not a professional?</small></p>
+  <%= link_to 'Sign up as an individual', new_registration_path(resource_name), class: 'btn btn-sm btn-white btn-block' %>
+
+

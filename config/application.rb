@@ -20,6 +20,16 @@ module Foodfeedback
       g.fixture_replacement :factory_girl, dir: "spec/factories"
     end
 
+    # http://stackoverflow.com/questions/4982073/different-layout-for-sign-in-action-in-devise
+    config.to_prepare do
+        Devise::SessionsController.layout "public/login"
+        Devise::RegistrationsController.layout proc{ |controller| user_signed_in? ? "application"   : "public/register_individual" }
+        Practice::RegistrationsController.layout proc{ |controller| user_signed_in? ? "application"   : "public/register_practice" }
+        Devise::ConfirmationsController.layout "public/login"
+        Devise::UnlocksController.layout "public/login"            
+        Devise::PasswordsController.layout "public/login"        
+    end
+
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.

@@ -12,7 +12,7 @@ module Features
       visit new_practice_user_registration_path
       fill_in 'Email', with: email
       fill_in 'Password', with: password
-      fill_in 'Password confirmation', :with => confirmation
+      fill_in 'Confirmation', :with => confirmation
       fill_in 'account_name', :with => account
       click_button 'Sign up'
     end

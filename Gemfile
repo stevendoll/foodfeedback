@@ -29,6 +29,7 @@ gem 'fatsecret-omniauth'
 
 # added gems
 gem 'font-awesome-rails'
+# gem 'icheck-rails' # https://github.com/cubus/icheck-rails customized checkboxes and radio buttons with JQuery
 gem 'simple_token_authentication'
 gem 'attribute_normalizer'
 
