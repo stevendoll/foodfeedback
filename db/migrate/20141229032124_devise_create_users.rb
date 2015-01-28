@@ -4,6 +4,7 @@ class DeviseCreateUsers < ActiveRecord::Migration
     # may need to add permissions
     # http://stackoverflow.com/questions/22135792/permission-denied-to-create-extension-uuid-ossp
     # psql > alter user foodfeedback with superuser;
+    #
     enable_extension 'uuid-ossp'
 
     create_table :users, id: :uuid do |t|
@@ -18,8 +19,9 @@ class DeviseCreateUsers < ActiveRecord::Migration
       t.string :last_name
       t.string :phone
       t.string :title
-      t.string :description
       t.string :invitation_code
+      t.text :description
+      t.text :goal
 
       # belongs to account
       t.uuid :account_id
