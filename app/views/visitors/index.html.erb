@@ -1,21 +1,10 @@
 <% content_for :title do %>Home<% end %>
 
-<div id="welcome" class="hero-unit span7">
-  <h1>Welcome</h1>
-  <h3>Plug your food into your goals.</h3>
-</div>
-<div class="row span8 plans">
-<div class="span2 well">
-  <div class="plan"><h2>Practitioner</h2></div>
-  <ul class="unstyled">
-<li>Unlimited Clients</li>￼</ul>
-<h3>$75/month</h3>
-<%= link_to 'Practitioner', new_practice_user_registration_path, :class => 'btn btn-primary' %>
-</div>
-<div class="span2 well featured">
-<div class="plan featured-plan"><h2>Gold</h2></div>
-<ul class="unstyled">
-  <li>Client</li>
-</ul>
-<h3>Free</h3>
-<%= link_to 'Client', new_user_registration_path, :class => 'btn btn-primary' %> </div>
+<h3>Welcome to IN+</h3>
+<p>Help, I need a great home page.
+  <!--Continually expanded and constantly improved Inspinia Admin Them (IN+)-->
+</p>
+<p>Login in. To see it in action.</p>
+
+<%= link_to 'Sign in', new_user_session_path, class: 'btn btn-primary block full-width m-b' %>
+<%= link_to 'Create an account for your practice', '/practice/register', class: 'btn btn-primary block full-width m-b' %>  

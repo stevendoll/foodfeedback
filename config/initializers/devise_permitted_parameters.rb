@@ -8,7 +8,7 @@ module DevisePermittedParameters
   protected
 
   def configure_permitted_parameters
-    devise_parameter_sanitizer.for(:sign_up) {|u| u.permit(:name, :email, :password, :password_confirmation, :first_name, :last_name, :phone, :avatar, :description, :invitation_code, account_attributes: [:name])}
+    devise_parameter_sanitizer.for(:sign_up) {|u| u.permit(:name, :email, :password, :password_confirmation, :first_name, :last_name, :phone, :avatar, :description, :invitation_code, :account_id, account_attributes: [:name])}
     devise_parameter_sanitizer.for(:accept_invitation) {|u| u.permit(:name, :email, :password, :password_confirmation, :first_name, :last_name, :phone, :avatar, :description, :invitation_code, :invitation_token)} 
     devise_parameter_sanitizer.for(:account_update) {|u| u.permit(:name, :email, :password, :password_confirmation, :current_password, :first_name, :last_name, :phone, :avatar, :description, :invitation_code)}
   end

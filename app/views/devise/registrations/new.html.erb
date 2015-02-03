@@ -1,4 +1,4 @@
-<%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :role => 'form'}) do |f| %>
+<%= simple_form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :role => 'form'}) do |f| %>
 <%= devise_error_messages! %>
 <div class="form-group">
   <%= f.text_field :first_name, :autofocus => true, class: 'form-control', placeholder: 'First Name', label: false %>
@@ -8,6 +8,9 @@
 </div>
 <div class="form-group">
   <%= f.text_field :invitation_code, class: 'form-control', placeholder: 'Invitation Code (Optional)', label: false %>
+</div>
+<div class="form-group">
+  <%= f.association :account, class: 'form-control', label: false %>
 </div>
 <div class="form-group">
   <%= f.email_field :email, class: 'form-control', placeholder: 'Email', label: false %>

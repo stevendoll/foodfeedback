@@ -3,10 +3,10 @@
   <h3>Invite your first client</h3>
   <%= devise_error_messages! %>
 
-<% resource.class.invite_key_fields.each do |field| -%>
-  <%= f.input field %>
-<% end -%>
+  <% resource.class.invite_key_fields.each do |field| -%>
+  <%= f.input field, placeholder: 'Email', label: false %>
+  <% end -%>
 
-<%= f.button :submit, t("devise.invitations.new.submit_button") %>
-<% end %>
+  <%= f.submit t("devise.invitations.new.submit_button"), :class => 'btn btn-primary block full-width m-b' %>
+  <% end %>
 </div>

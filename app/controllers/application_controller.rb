@@ -10,7 +10,7 @@ class ApplicationController < ActionController::Base
     when 'practitioner' 
       practice_dashboard_index_path
     when 'admin' 
-      root_path
+      practice_dashboard_index_path
     else
       root_path
     end
