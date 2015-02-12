@@ -7,8 +7,7 @@ class ClientDashboardPolicy < Struct.new(:user, :client_dashboard)
   end
 
   def index?
-    #@current_user.admin? or @current_user.client?
-    true
+    @current_user.admin? or @current_user.client? or @current_user.practitioner?
   end
 
 end

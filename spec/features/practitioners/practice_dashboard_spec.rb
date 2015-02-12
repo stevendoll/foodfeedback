@@ -1,8 +1,5 @@
 Warden.test_mode!
-# Feature: User index page
-#   As a user
-#   I want to see a list of users
-#   So I can see who has registered
+
 feature 'Practice Dashboard', :devise do
 
   after(:each) do
@@ -10,10 +7,9 @@ feature 'Practice Dashboard', :devise do
   end
 
 
-  # Scenario: Practitioner's clients listed on index page
+  # Scenario: Practitioner views dashboard after signin
   #   Given I am signed in
-  #   When I visit the practitioner dashboard page
-  #   Then I see the email addresses of my clients
+  #   Then I see the practitioner dashboard page
   scenario 'view practice dashboard after signin' do
     user = FactoryGirl.create(:user, :practitioner)
     signin(user.email, user.password)

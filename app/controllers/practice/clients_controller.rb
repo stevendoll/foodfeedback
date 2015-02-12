@@ -1,17 +1,17 @@
 class Practice::ClientsController < ApplicationController
   before_filter :authenticate_user!
   before_action :set_client, only: [:show, :edit, :update, :invite, :destroy]
-  #after_action :verify_authorized
+  after_action :verify_authorized
 
   def index
-    authorize :practice_client
+    authorize User, :practitioner_dashboard_index?
     @clients = policy_scope(User)
   end
 
   def show
     #authorize :practice_client
     @user = @client
-    authorize @user
+    authorize @user, :practitioner_dashboard_show?
 
     if !@client.fatsecret_token.nil?
 

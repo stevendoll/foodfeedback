@@ -49,4 +49,15 @@ class UserPolicy
     @current_user.admin?
   end
 
+  # /practice/clients
+  def practitioner_dashboard_index?
+    @current_user.admin? or @current_user.practitioner?
+  end
+
+  # /practice/clients/:id
+  def practitioner_dashboard_show?
+    @current_user.admin? or (@current_user.practitioner? and @current_user.account == @user.account)
+  end
+
+
 end
