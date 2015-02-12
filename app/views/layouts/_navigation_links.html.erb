@@ -6,7 +6,7 @@
     <a href="users"><i class="fa fa-user"></i> <span class="nav-label">Clients </span><span class="label label-warning pull-right"><%= policy_scope(User).where.not(confirmed_at: nil).where(role: 'client').count if current_user %></span></a>
     <ul class="nav nav-second-level">
         <% policy_scope(User).where.not(confirmed_at: nil).where(role: 'client').each do |user| %>
-        <li><%= link_to user.email, user %></li>
+        <li><%= link_to (user.full_name.length < 2 ? user.email : user.full_name), practice_client_path(user) %></li>
         <% end %>
     </ul>
 </li>

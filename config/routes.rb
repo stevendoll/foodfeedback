@@ -4,7 +4,8 @@ Rails.application.routes.draw do
   resources :accounts
 
   namespace :practice do
-  get 'dashboard/index'
+    get 'dashboard/index'
+    resources :clients
   end
 
   get '/auth/fatsecret/callback', to: 'api_tokens#create'
