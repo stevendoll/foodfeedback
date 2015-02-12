@@ -10,7 +10,8 @@ class Practice::ClientsController < ApplicationController
 
   def show
     #authorize :practice_client
-    #authorize @user
+    @user = @client
+    authorize @user
 
     if !@client.fatsecret_token.nil?
 
