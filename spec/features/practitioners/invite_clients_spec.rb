@@ -102,7 +102,7 @@ feature '85376400 Invite clients', :devise do
     click_button "Set my password"
 
     expect(page).to have_content I18n.t 'devise.invitations.updated'
-    expect(page).to have_content 'My Dashboard'
+    expect(page).to have_content 'Dashboard'
   end
 
 

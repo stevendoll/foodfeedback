@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-  <head>
+<head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><%= content_for?(:title) ? yield(:title) : "Food Feedback" %></title>
     <meta name="description" content="<%= content_for?(:description) ? yield(:description) : "Meetingexpectations" %>">
@@ -15,55 +15,52 @@
         <%= render 'layouts/navigation' %>
 
         <div id="page-wrapper" class="gray-bg dashbard-1">
-        <div class="row border-bottom">
-        <nav class="navbar navbar-static-top" role="navigation" style="margin-bottom: 0">
-        <div class="navbar-header">
-            <a class="navbar-minimalize minimalize-styl-2 btn btn-primary " href="#"><i class="fa fa-bars"></i> </a>
-            <form role="search" class="navbar-form-custom" method="post" action="search_results.html">
-                <div class="form-group">
-                    <input type="text" placeholder="Search for something..." class="form-control" name="top-search" id="top-search">
-                </div>
-            </form>
-        </div>
-            <ul class="nav navbar-top-links navbar-right">
-                <li>
-                    <span class="m-r-sm text-muted welcome-message">Food Feedback</span>
-                </li>
-                <%= render 'layouts/top_messages' %>
-                <%= render 'layouts/top_alerts' %>
-
-                <li>
-                    
-                  <% if user_signed_in? %>
-                  <%= link_to destroy_user_session_path, :method=>'delete' do %>
-                  <i class="fa fa-sign-out"></i> Log out
-                  <% end %>
-                  <% else %>
-                  <%= link_to new_user_session_path do %>
-                  <i class="fa fa-sign-in"></i> Log in
-                  <% end %>
-                  <% end %>
-                </li>
-            </ul>
-
-        </nav>
-        </div>    
-            <%= render 'layouts/messages' %>
-            <%= yield %>
-                
-                <div class="footer">
-                    <div class="pull-right">
-                        10GB of <strong>250GB</strong> Free.
+            <div class="row border-bottom">
+                <nav class="navbar navbar-static-top" role="navigation" style="margin-bottom: 0">
+                    <div class="navbar-header">
+                        <a class="navbar-minimalize minimalize-styl-2 btn btn-primary " href="#"><i class="fa fa-bars"></i> </a>
+                        <form role="search" class="navbar-form-custom" method="post" action="search_results.html">
+                            <div class="form-group">
+                                <input type="text" placeholder="Search for something..." class="form-control" name="top-search" id="top-search">
+                            </div>
+                        </form>
                     </div>
-                    <div>
-                        <strong>Copyright</strong> Example Company &copy; 2014-2015
-                    </div>
-                </div>
+                    <ul class="nav navbar-top-links navbar-right">
+                        <li>
+                            <span class="m-r-sm text-muted welcome-message">Food Feedback</span>
+                        </li>
+                        <%= render 'layouts/top_messages' %>
+                        <%= render 'layouts/top_alerts' %>
+
+                        <li>
+
+                          <% if user_signed_in? %>
+                          <%= link_to destroy_user_session_path, :method=>'delete' do %>
+                          <i class="fa fa-sign-out"></i> Log out
+                          <% end %>
+                          <% else %>
+                          <%= link_to new_user_session_path do %>
+                          <i class="fa fa-sign-in"></i> Log in
+                          <% end %>
+                          <% end %>
+                      </li>
+                  </ul>
+
+              </nav>
+          </div>    
+          <%= render 'layouts/messages' %>
+          <%= yield %>
+
+          <div class="footer">
+            <div class="pull-right">
+                10GB of <strong>250GB</strong> Free.
+            </div>
+            <div>
+                <strong>Copyright</strong> Example Company &copy; 2014-2015
             </div>
         </div>
-
-        </div>
     </div>
+</div>
 
 </body>
 </html>

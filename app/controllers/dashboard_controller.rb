@@ -10,36 +10,66 @@ class DashboardController < ApplicationController
       flash = "This is the client dashboard. Use this to monitor your own information."
     end
 
-    #params = {"food_id" => "33691", "method" => "food.get"}
-    params['method'] = 'food_entries.get_month'
-    params['format'] = 'json'
+    if !@user.fatsecret_token.nil?
 
-    # food_entries.get_month
+      @days = []
 
-    @body = ""
+      params['method'] = 'food_entries.get_month'
+      params['format'] = 'json'
 
-    begin
-      response = Fatsecret::Api.new({}).api_call(
-        Rails.application.secrets.fatsecret_consumer_key, 
-        Rails.application.secrets.fatsecret_consumer_secret,
-        params, 
-        @user.fatsecret_token,
-        @user.fatsecret_secret
-      )
+      begin
+        response = Fatsecret::Api.new({}).api_call(
+          Rails.application.secrets.fatsecret_consumer_key, 
+          Rails.application.secrets.fatsecret_consumer_secret,
+          params, 
+          @user.fatsecret_token,
+          @user.fatsecret_secret
+        )
 
-      @body = JSON.parse(response.body)
-      #body = response.body
+        begin
+          puts response.body
+          #
+          # { "month": { "day": [ {"calories": "705", "carbohydrate": "101.62", "date_int": "16475", "fat": "22.83", "protein": "23.07" }, {"calories": "612", "carbohydrate": "70.59", "date_int": "16479", "fat": "23.85", "protein": "26.06" } ], "from_date_int": "16467", "to_date_int": "16494" }}
 
-      puts @body
-    rescue => e
-      logger.warn "Fatsecret failure: #{e}" 
+          month = ActiveSupport::JSON.decode(response.body)["month"]["day"]
+        rescue ActiveSupport::JSON.parse_error
+          Rails.logger.warn("Attempted to decode invalid JSON: #{response.body}")
+        end
+
+      rescue => e
+        logger.warn "Fatsecret failure: #{e}" 
+      end
+
+      month.each do |d|
+
+        params['method'] = 'food_entries.get'
+        params['format'] = 'json'
+        params['date'] = d["date_int"]
+
+        # food_entries.get_month
+
+        begin
+          response = Fatsecret::Api.new({}).api_call(
+            Rails.application.secrets.fatsecret_consumer_key, 
+            Rails.application.secrets.fatsecret_consumer_secret,
+            params, 
+            @user.fatsecret_token,
+            @user.fatsecret_secret
+          )
+
+          begin
+            #puts response.body
+            @days << ActiveSupport::JSON.decode(response.body)["food_entries"]["food_entry"]
+          rescue ActiveSupport::JSON.parse_error
+            Rails.logger.warn("Attempted to decode invalid JSON: #{response.body}")
+          end
+
+        rescue => e
+          logger.warn "Fatsecret failure: #{e}" 
+        end
+
+      end
     end
-
-
-    #@something = body.month.day.calories
-    #@calories = @body[:month][:day][:calories]
-
-    #puts @calories
 
   end
 end

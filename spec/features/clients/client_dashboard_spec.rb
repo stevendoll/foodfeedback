@@ -18,7 +18,7 @@ feature 'Client Dashboard', :devise do
     user = FactoryGirl.create(:user, :client)
     signin(user.email, user.password)
     expect(current_path).to eq('/dashboard')
-    expect(page).to have_content 'My Dashboard'
+    expect(page).to have_content 'Dashboard'
   end
 
   # Scenario: Client sees own dashboard
