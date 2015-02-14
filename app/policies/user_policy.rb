@@ -57,6 +57,7 @@ class UserPolicy
   # /practice/clients/:id
   def practitioner_dashboard_show?
     @current_user.admin? or (@current_user.practitioner? and @current_user.account == @user.account)
+    #false
   end
 
 

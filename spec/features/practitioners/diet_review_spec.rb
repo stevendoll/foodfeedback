@@ -34,7 +34,9 @@ feature 'Practioner Diet Review' do
     my_client = User.where(:account => practitioner.account).first
     login_as(practitioner, scope: :user)
     visit practice_client_path(my_client)
-    expect(page).to have_content my_client.full_name
+    expect(page).to have_content 'Practice'
+    expect(page).to have_content 'Clients'
+    expect(page).to have_content my_client.first_name
   end
 
 
@@ -59,7 +61,7 @@ feature 'Practioner Diet Review' do
   #   When I visit the practitioner client page
   #   Then I am sent back to the root page
   #   And I see an "Access denied" message
-  scenario 'client cant view clients on practitioner client page' do
+  scenario 'client cant view self on practitioner client page' do
     practitioner = FactoryGirl.create(:user, :practitioner_with_clients)
     client = User.where(:account => practitioner.account).first
     login_as(client, scope: :user)
@@ -75,28 +77,10 @@ feature 'Practioner Diet Review' do
   #   When I visit the practitioner client page
   #   Then I am sent back to the root page
   #   And I see an "Access denied" message
-  scenario 'client cant view clients on practitioner client page' do
+  scenario 'client cant view other client on practitioner client page' do
     practitioner = FactoryGirl.create(:user, :practitioner_with_clients)
     client = User.where(:account => practitioner.account).first
     other_client = User.where(:account => practitioner.account).last
-    login_as(client, scope: :user)
-    visit practice_client_path(other_client)
-    expect(current_path).to eq('/')
-    expect(page).to have_content 'Welcome'
-    expect(page).to have_content 'Access denied.'
-  end
-
-  # Scenario: Client can't view other clients on practitioner client page
-  #   Given I am signed in
-  #   Given I am not a practitioner
-  #   When I visit the practitioner client page
-  #   Then I am sent back to the root page
-  #   And I see an "Access denied" message
-  scenario 'client cant view clients on practitioner client page' do
-    practitioner = FactoryGirl.create(:user, :practitioner_with_clients)
-    client = User.where(:account => practitioner.account).first
-    other_practitioner = FactoryGirl.create(:user, :practitioner_with_clients)
-    other_client = User.where(:account => other_practitioner.account).first
     login_as(client, scope: :user)
     visit practice_client_path(other_client)
     expect(current_path).to eq('/')
