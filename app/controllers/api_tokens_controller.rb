@@ -10,7 +10,7 @@ class ApiTokensController < ApplicationController
     # puts request.env['omniauth.auth']['credentials']
 
     if @user.save
-      redirect_to @user, notice: 'User updated.'
+      redirect_to dashboard_path, notice: 'User updated.'
     else
       render :new
     end
