@@ -66,7 +66,6 @@ feature 'Practioner Diet Review' do
     client = User.where(:account => practitioner.account).first
     login_as(client, scope: :user)
     visit practice_client_path(client)
-    expect(current_path).to eq('/')
     expect(page).to have_content 'Welcome'
     expect(page).to have_content 'Access denied.'
   end
@@ -83,7 +82,6 @@ feature 'Practioner Diet Review' do
     other_client = User.where(:account => practitioner.account).last
     login_as(client, scope: :user)
     visit practice_client_path(other_client)
-    expect(current_path).to eq('/')
     expect(page).to have_content 'Welcome'
     expect(page).to have_content 'Access denied.'
   end
