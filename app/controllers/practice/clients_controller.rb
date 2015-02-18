@@ -46,7 +46,7 @@ class Practice::ClientsController < ApplicationController
         logger.warn "Fatsecret failure: #{e}" 
       end
 
-      if month.length > 0
+      if month and month.length > 0
         month.each do |d|
 
           params['method'] = 'food_entries.get'
