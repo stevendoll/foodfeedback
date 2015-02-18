@@ -46,32 +46,34 @@ class Practice::ClientsController < ApplicationController
         logger.warn "Fatsecret failure: #{e}" 
       end
 
-      month.each do |d|
+      if month.length > 0
+        month.each do |d|
 
-        params['method'] = 'food_entries.get'
-        params['format'] = 'json'
-        params['date'] = d["date_int"]
+          params['method'] = 'food_entries.get'
+          params['format'] = 'json'
+          params['date'] = d["date_int"]
 
-        # food_entries.get_month
-
-        begin
-          response = Fatsecret::Api.new({}).api_call(
-            Rails.application.secrets.fatsecret_consumer_key, 
-            Rails.application.secrets.fatsecret_consumer_secret,
-            params, 
-            @client.fatsecret_token,
-            @client.fatsecret_secret
-          )
+          # food_entries.get_month
 
           begin
-            #puts response.body
-            @days << ActiveSupport::JSON.decode(response.body)["food_entries"]["food_entry"]
-          rescue ActiveSupport::JSON.parse_error
-            Rails.logger.warn("Attempted to decode invalid JSON: #{response.body}")
-          end
+            response = Fatsecret::Api.new({}).api_call(
+              Rails.application.secrets.fatsecret_consumer_key, 
+              Rails.application.secrets.fatsecret_consumer_secret,
+              params, 
+              @client.fatsecret_token,
+              @client.fatsecret_secret
+            )
 
-        rescue => e
-          logger.warn "Fatsecret failure: #{e}" 
+            begin
+              #puts response.body
+              @days << ActiveSupport::JSON.decode(response.body)["food_entries"]["food_entry"]
+            rescue ActiveSupport::JSON.parse_error
+              Rails.logger.warn("Attempted to decode invalid JSON: #{response.body}")
+            end
+
+          rescue => e
+            logger.warn "Fatsecret failure: #{e}" 
+          end
         end
 
       end
