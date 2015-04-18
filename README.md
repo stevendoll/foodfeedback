@@ -1,7 +1,22 @@
 Foodfeedback
 ================
 
-This is a reference application demonstrating a technology stack, processes and tools to quickly build a high-quality Minimum Viable Product (MVP). 
+[Food Feedback](http://foodfeedback.herokuapp.com) is an app that helps a nutritionist or dietition better connect with clients by making it easy for the practitioner to monitor the diet diaries of the clients. 
+
+- The practitioner registers his or her practice
+- The practitioner invites clients
+- Clients respond to the invitation by creating and connecting their FatSecret accounts
+- The practitioner can view clients' FatSecret diet diaries
+
+Food Feedback demonstrates:
+
+- Registration and invitation workflows
+- Multi-tenancy: the application supports multiple practices, each with users in various roles
+- OAuth login
+- API consumption: FatSecret API
+
+
+Food Feedback is a reference application demonstrating the technology stack, processes and tools that enable a startup to quickly build a high-quality Minimum Viable Product (MVP). 
 
 Technology Stack
 
@@ -9,7 +24,7 @@ Technology Stack
 - Postgres Database
 - Heroku hosting
 - AWS S3 CDN for assets
-- High quality bootstrap theme from WrapBootstrap ([https://wrapbootstrap.com/theme/inspinia-responsive-admin-theme-WB0R5L90S] Inspinia) 
+- Bootstrap theme from WrapBootstrap [https://wrapbootstrap.com/theme/inspinia-responsive-admin-theme-WB0R5L90S](Inspinia)
 - Twilio SMS support
 - Pushmeup APNS push notifications
 - Uuids used throughout
@@ -17,10 +32,10 @@ Technology Stack
 
 Tools
 
-- Github
-- Pivotal Tracker
-- Codeship Continuous Integration
-- CodeClimate
+- [Github](https://github.com/stevendoll/foodfeedback)
+- [Pivotal Tracker](https://www.pivotaltracker.com/projects/1235218)
+- [Codeship Continuous Integration](https://codeship.com/projects/55520)
+- [CodeClimate](https://codeclimate.com/github/stevendoll/foodfeedback)
 - Google Analytics
 - Papertrail
 
@@ -51,16 +66,16 @@ Similar Projects
 
 Check out
 
-- Fatsecret
-- Fitmess http://fitmess.herokuapp.com/
-- Open mHealth http://www.openmhealth.org/about/
-- Fitbit http://www.fitbit.com/apps/syncmetrics
+- [Fatsecret](http://www.fatsecret.com/)
+- [Fitmess](http://fitmess.herokuapp.com/)
+- [Open mHealth](http://www.openmhealth.org/about/)
+- [Fitbit](http://www.fitbit.com/apps/syncmetrics)
 
 
 Contributing
 ------------
 
-This project is not open for contribution at this time. Please contact me at steven@kichocheo.com is you have a suggested use for this.
+This project is open for contribution. Please contact me at steven@kichocheo.com is you have a suggested use.
 
 
 Credits
